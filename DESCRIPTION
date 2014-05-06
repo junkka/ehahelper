@@ -1,0 +1,16 @@
+Package: ehahelper
+Title: Helper Functions for Event History Analysis
+Version: 0.1
+Author: Johan Junkka
+Maintainer: Johan Junkka <johan.junkka@gmail.com>
+Description: Helper Functions for Event History Analysis
+Depends:
+    R (>= 3.0.3)
+License: MIT + file LICENSE
+LazyData: true
+Roxygen: list(wrap = FALSE)
+Suggests:
+    survival,
+    ggplot2,
+    plyr,
+    testthat
