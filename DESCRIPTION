@@ -8,11 +8,13 @@ Description: Helper Functions for Event History Analysis
 URL: https://github.com/junkka/ehahelper
 Depends:
     R (>= 3.0.3)
+Imports:
+    plyr,
+    stringr,
+    survival
 License: MIT + file LICENSE
 LazyData: true
 Roxygen: list(wrap = FALSE)
 Suggests:
-    survival,
     ggplot2,
-    plyr,
     testthat

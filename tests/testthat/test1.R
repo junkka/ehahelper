@@ -1,7 +1,9 @@
+context('Merge reg')
 # tests
 
 test_that("merge_reg", {
   library(survival)
+  data('cancer')
   fit_sml <- coxph(Surv(time, status) ~ age + strata(inst), data=cancer)
   fit_lrg <- coxph(Surv(time, status) ~ age + factor(sex)  + ph.ecog + strata(inst), data=cancer)
   res_tbl <- merge_reg(fit_lrg, list(small = fit_sml, larg=fit_lrg ))
