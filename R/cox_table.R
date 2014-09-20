@@ -27,6 +27,15 @@ cox_table <- function(cox)
 #' @param cilevel confidence interval
 #' @author Johan Junkka \email{johan.junkka@@gmail.com}
 #' @export
+#' @examples
+#' library(survival)
+#' data('cancer', package = 'survival')
+#' cancer$sex <- factor(cancer$sex, labels = c('male', 'female'))
+#' model1 <- coxph(Surv(time, status) ~ age + sex  + ph.ecog + strata(inst), data=cancer)
+#' model2 <- coxph(Surv(time, status) ~ age + strata(inst), data=cancer)
+#' coxph_to_long(model1, model2)
+#' 
+
 
 
 coxph_to_long <- function(..., cilevel=0.95) {

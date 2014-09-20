@@ -30,7 +30,7 @@ Split event history data into a sequences such as age groups. A row is split if 
 
 ```{r}
 mgus1$status <- ifelse(mgus1$event == "death", 1, 0)
-x <- age_split(mgus1, "start","stop","id","status",500)
+x <- age_split(mgus1, "start", "stop", "id", "status", 500)
 ```
 
 #### merge_reg
@@ -40,3 +40,16 @@ Merge results from nested `coxph` regressions.
 #### cox_table
 
 Create a simple results table from a `coxph` regression.
+
+#### coxph_to_long
+
+Create one long format table from multiple nested `coxph` objects.
+
+```{r}
+library(survival)
+data('cancer', package = 'survival')
+cancer$sex <- factor(cancer$sex, labels = c('male', 'female'))
+model1 <- coxph(Surv(time, status) ~ age + sex  + ph.ecog + strata(inst), data = cancer)
+model2 <- coxph(Surv(time, status) ~ age + strata(inst), data = cancer)
+res <- coxph_to_long(model1, model2)
+```

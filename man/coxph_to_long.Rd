@@ -13,6 +13,14 @@ coxph_to_long(..., cilevel = 0.95)
 \description{
 For nested models
 }
+\examples{
+library(survival)
+data('cancer', package = 'survival')
+cancer$sex <- factor(cancer$sex, labels = c('male', 'female'))
+model1 <- coxph(Surv(time, status) ~ age + sex  + ph.ecog + strata(inst), data=cancer)
+model2 <- coxph(Surv(time, status) ~ age + strata(inst), data=cancer)
+coxph_to_long(model1, model2)
+}
 \author{
 Johan Junkka \email{johan.junkka@gmail.com}
 }
