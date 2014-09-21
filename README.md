@@ -3,6 +3,16 @@ Event history analysis helper package
 
 Helper functions for event history analysis with the survival package.
 
+Install
+-------
+
+Install from GitHub repository.
+
+``` {.r}
+library(devtools)
+install_github('junkka/ehahelper')
+```
+
 Functions
 ---------
 
@@ -12,6 +22,11 @@ Make a data.frame of a `survfit` or `coxph` object for visualization with ggplot
 
 ``` {.r}
 library(survival)
+```
+
+    ## Loading required package: splines
+
+``` {.r}
 library(ggplot2)
 surv_object <- coxph(Surv(time, status) ~ strata(x), data = aml)
 ggplot(ggsurv(surv_object), aes(time, surv, color=strata)) + geom_step()

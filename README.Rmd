@@ -8,6 +8,15 @@ output:
 
 Helper functions for event history analysis with the survival package.
 
+## Install
+
+Install from GitHub repository.
+
+```{r, eval = FALSE}
+library(devtools)
+install_github('junkka/ehahelper')
+```
+
 ## Functions
 
 #### ggsurv
