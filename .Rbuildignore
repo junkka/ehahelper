@@ -1,2 +1,4 @@
 ^init\.R$
 ^test\.RData$
+^README\.Rmd$
+^README_files/(.*)$
