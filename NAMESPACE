@@ -2,6 +2,7 @@
 
 export(age_split)
 export(cox_table)
+export(coxph_sum)
 export(coxph_to_long)
 export(ggsurv)
 export(merge_reg)

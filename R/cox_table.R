@@ -63,6 +63,10 @@ coxph_to_long <- function(..., cilevel=0.95) {
   # Order levs by largest model
   dat$levs    <- ordered(dat$levs, levels=rev(nm))
 
+  # Add summary stat by model
+  attr(dat, "summary") <- llply(x, .fun = coxph_sum)
+  class(dat)           <- c("cox_tb", class(dat))
+
   return(dat)
 }
 
@@ -118,4 +122,30 @@ coxph_df <- function(x, cilevel = 0.9) {
       )
     }
   })
+}
+
+#' Summary stats for coxph object
+#'
+#' Description
+#'
+#' @param x coxph object
+#' @export
+
+
+coxph_sum <- function(x) {
+  coef       <- x$coef
+  df         <- ifelse(is.null(x$df), sum(!is.na(coef)), round(sum(x$df),2)) 
+  getp <- function(x) 1 - pchisq(x, df)
+  data.frame(
+    var = c("Events", "Observations", "AIC", "Likelihood ratio test", "Logrank score", "Wald test"),
+    value = c(
+      as.numeric(x$nevent),
+      as.numeric(x$n),
+      extractAIC(x)[2],
+      (-2 * (x$loglik[1] - x$loglik[2])),
+      as.numeric(x$score),
+      as.numeric(x$wald.test)
+      ),
+    p = c(rep(NA, 3), getp(-2 * (x$loglik[1] - x$loglik[2])), getp(x$score), getp(x$wald))
+  )
 }
