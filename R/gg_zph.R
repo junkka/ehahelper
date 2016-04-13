@@ -6,8 +6,8 @@
 #' @export
 #' @examples
 #' library(survival)
-#' surv_object <- coxph(Surv(time, status) ~ x, data = aml)
-#' fit_zph <- cox.zph(surv_object, transform = "identity")
+#' fit <- coxph(Surv(time, status) ~ age + sex + disease, data = kidney)
+#' fit_zph <- cox.zph(fit, transform = "identity")
 #' zph_df <- as.data.frame(fit_zph)
 #'
 
@@ -16,16 +16,20 @@ as.data.frame.cox.zph <- function(x, val = NA){
   if (all(is.na(val)))
     val <- 1:nrow(x$var)
   
-  res <- plyr::ldply(val, function(a){
-    data.frame(
-      time = x[a]$x,
-      beta_t = as.numeric(x[a]$y[ ,1]),
-      var = as.character(attr(x[a]$y, "dimnames")[[2]]),
-      p_value = round(x[a]$table[ ,3], 3),
-      stringsAsFactors = FALSE
-    )
-  })
-  res
+  time <- c()
+  beta_t <- numeric()
+  var <- character()
+  p_value <- numeric()
+  
+  for (i in val){
+    time = c(time, x[i]$x)
+    beta_t = c(beta_t, as.numeric(x[i]$y[ ,1]))
+    var = c(var, rep(as.character(attr(x$y, "dimnames")[[2]][i]), length(x[i]$x)))
+    p_value = c(p_value, rep(round(x[i]$table[ ,3], 3), length(x[i]$x)))
+  }
+  data.frame(time, beta_t, var, p_value,
+    stringsAsFactors = FALSE
+  )
 }
 
 #' ggplot cox.zph
@@ -41,8 +45,8 @@ as.data.frame.cox.zph <- function(x, val = NA){
 #' @export
 #' @examples
 #' library(survival)
-#' surv_object <- coxph(Surv(time, status) ~ x, data = aml)
-#' fit_zph <- cox.zph(surv_object, transform = "identity")
+#' fit <- coxph(Surv(time, status) ~ age + sex + disease, data = kidney)
+#' fit_zph <- cox.zph(fit, transform = "identity")
 #' gg_zph(fit_zph)
 #' gg_zph(fit_zph, log = TRUE)
 #'

@@ -104,7 +104,7 @@ glance.coxme <- function(x, ...){
                          function(x) if (is.matrix(x)) dimnames(x)[[1]] else names(x)))
  
   b <- as.vector(temp1)
-  names(b) <- paste(rep(c("random_variance", "random_sd"), each = length(b)/2), temp3, sep = "_")
+  names(b) <- paste(rep(c("random_sd", "random_variance"), each = length(b)/2), temp3, sep = "_")
   
   # groups
   grps <- unlist(lapply(x$frail, length))

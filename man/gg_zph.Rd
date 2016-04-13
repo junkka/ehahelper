@@ -21,8 +21,8 @@ A ggplot2 implementation of plotting scaled Schoenfeld residuals
 }
 \examples{
 library(survival)
-surv_object <- coxph(Surv(time, status) ~ x, data = aml)
-fit_zph <- cox.zph(surv_object, transform = "identity")
+fit <- coxph(Surv(time, status) ~ age + sex + disease, data = kidney)
+fit_zph <- cox.zph(fit, transform = "identity")
 gg_zph(fit_zph)
 gg_zph(fit_zph, log = TRUE)
 
