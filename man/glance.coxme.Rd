@@ -14,4 +14,11 @@
 \description{
 Glance method for coxme objects
 }
+\examples{
+library(broom)
+library(coxme)
+fit <- coxme(Surv(y, uncens) ~ trt + (1|center), eortc)
+glance(fit)
+
+}
 

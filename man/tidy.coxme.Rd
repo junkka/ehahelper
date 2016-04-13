@@ -4,7 +4,7 @@
 \alias{tidy.coxme}
 \title{Tidy coxme}
 \usage{
-\method{tidy}{coxme}(x, exponentiate = TRUE, ...)
+\method{tidy}{coxme}(x, exponentiate = FALSE, ...)
 }
 \arguments{
 \item{x}{coxme object}
@@ -15,5 +15,12 @@
 }
 \description{
 Tidy method for coxme objects
+}
+\examples{
+library(broom)
+library(coxme)
+fit <- coxme(Surv(y, uncens) ~ trt + (1|center), eortc)
+tidy(fit)
+
 }
 

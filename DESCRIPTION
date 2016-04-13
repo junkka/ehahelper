@@ -11,8 +11,6 @@ Depends:
     R (>= 3.2.0)
 Imports:
     plyr,
-    dplyr,
-    stringr,
     survival,
     broom,
     eha,
