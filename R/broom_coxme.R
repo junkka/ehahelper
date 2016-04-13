@@ -3,8 +3,10 @@
 #' Tidy method for coxme objects
 #'
 #' @param x coxme object
-#' @param exponentiate boolean
-#' @param ... other params
+#' @param exponentiate whether to report the estimate and 
+#' confidence intervals on an exponential scale
+#' @param conf.int confidence level to be used for CI
+#' @param ... extra arguments, not used
 #' @export
 #' @import coxme
 #' @import broom
@@ -15,13 +17,13 @@
 #' tidy(fit)
 #' 
 
-tidy.coxme <- function(x, exponentiate = FALSE, ...){
+tidy.coxme <- function(x, exponentiate = FALSE, conf.int = 0.95, ...){
   beta <- x$coefficients
   nvar <- length(beta)
   nfrail <- nrow(x$var) - nvar
   nn <- c("estimate", "exp()", "std.error", "statistic", "p.value")
   se <- sqrt(diag(as.matrix(x$var))[nfrail + 1:nvar])
-  z <- qnorm((1 + 0.95)/2, 0, 1)
+  z <- qnorm((1 + conf.int)/2, 0, 1)
   ret <- data.frame(
     "term" = names(beta),
     "estimate" = beta,

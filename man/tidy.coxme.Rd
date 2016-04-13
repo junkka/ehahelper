@@ -4,14 +4,17 @@
 \alias{tidy.coxme}
 \title{Tidy coxme}
 \usage{
-\method{tidy}{coxme}(x, exponentiate = FALSE, ...)
+\method{tidy}{coxme}(x, exponentiate = FALSE, conf.int = 0.95, ...)
 }
 \arguments{
 \item{x}{coxme object}
 
-\item{exponentiate}{boolean}
+\item{exponentiate}{whether to report the estimate and 
+confidence intervals on an exponential scale}
 
-\item{...}{other params}
+\item{conf.int}{confidence level to be used for CI}
+
+\item{...}{extra arguments, not used}
 }
 \description{
 Tidy method for coxme objects
