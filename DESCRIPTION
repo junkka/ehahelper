@@ -1,23 +1,24 @@
 Package: ehahelper
 Title: Helper Functions for Event History Analysis
-Version: 0.2
-Date: 2015-06-04
+Version: 0.2.9999
+Date: 2016-04-13
 Author: Johan Junkka
 Maintainer: Johan Junkka <johan.junkka@gmail.com>
-Description: Helper Functions for Event History Analysis
+Description: 
+    Helper Functions for Event History Analysis.
 URL: https://github.com/junkka/ehahelper
 Depends:
     R (>= 3.2.0)
 Imports:
     plyr,
+    dplyr,
     stringr,
     survival,
-    eha,
     broom,
-    coxme
+    eha,
+    coxme,
+    ggplot2
 License: MIT + file LICENSE
 LazyData: true
 Roxygen: list(wrap = FALSE)
-Suggests:
-    ggplot2,
-    testthat
+RoxygenNote: 5.0.1

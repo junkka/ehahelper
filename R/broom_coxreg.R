@@ -31,9 +31,9 @@ tidy.coxreg <- function(x, exponentiate = TRUE, ...){
     "conf.high" =  beta + z * se
   )
   if (exponentiate) {
-      ret$estimate <- exp(ret$estimate)
-      ret$conf.low <- exp(ret$conf.low)
-      ret$conf.high <- exp(ret$conf.high)
+    ret$estimate <- exp(ret$estimate)
+    ret$conf.low <- exp(ret$conf.low)
+    ret$conf.high <- exp(ret$conf.high)
   }
   rownames(ret) <- c(1:nrow(ret))
   ret
@@ -49,8 +49,8 @@ tidy.coxreg <- function(x, exponentiate = TRUE, ...){
 
 glance.coxreg <- function(x, ...){
   df <- ifelse(is.null(x$df), 
-    sum(!is.na(x$coef)),
-    x$df
+               sum(!is.na(x$coef)),
+               x$df
   )
   logtest <- -2 * (x$loglik[1] - x$loglik[2])
   ret <- list(
@@ -67,5 +67,3 @@ glance.coxreg <- function(x, ...){
   ret <- as.data.frame(compact(ret))
   finish_glance(ret, x)
 }
-
-

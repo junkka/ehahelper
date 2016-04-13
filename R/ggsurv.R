@@ -8,10 +8,12 @@
 #'   and surv. Optionaly if object is coxph, it returns cumhaz and if the object is 
 #' stratified, strata.
 #' @author Johan Junkka
-#' @examples \dontrun{
+#' @examples
+#' library(survival)
+#' library(ggplot2)
 #' surv_object <- coxph(Surv(time, status) ~ strata(x), data = aml)
 #' ggplot(ggsurv(surv_object), aes(time, surv, color=strata)) + geom_step()
-#'}
+#'
 ggsurv <- function(x) {
   if (!inherits(x, c("coxph","survfit"))) stop("x is not a coxph or survfit object")
   if (inherits(x, "coxph")) x <- survival::survfit(x)
