@@ -49,3 +49,37 @@ gg_zph(x, log = TRUE)
 ```
 
 ![](README_files/figure-markdown_github/gg_zph-2.png)
+
+#### coxme tidyer
+
+Convert coxme objects to tidy format.
+
+``` r
+library(broom)
+library(coxme)
+fit <- coxme(Surv(y, uncens) ~ trt + (1|center), eortc)
+knitr::kable(tidy(fit, exp = T), digits = 3)
+```
+
+| term |  estimate|  std.error|  statistic|  p.value|  conf.low|  conf.high|
+|:-----|---------:|----------:|----------:|--------:|---------:|----------:|
+| trt  |     2.031|      0.064|      11.03|        0|     1.791|      2.304|
+
+``` r
+fit_g <- glance(fit)
+knitr::kable(as.data.frame(t(fit_g)), digits = 3)
+```
+
+|                          |          V1|
+|--------------------------|-----------:|
+| n                        |    2323.000|
+| events                   |    1463.000|
+| Chisq                    |     236.110|
+| df                       |       2.000|
+| logLik                   |  -10478.839|
+| p                        |       0.000|
+| AIC                      |   21015.051|
+| BIC                      |   21166.750|
+| random\_n\_center        |      37.000|
+| random\_sd\_center       |       0.329|
+| random\_variance\_center |       0.108|

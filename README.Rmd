@@ -45,3 +45,20 @@ gg_zph(x)
 gg_zph(x, log = TRUE)
 ```
 
+#### coxme tidyer
+
+Convert coxme objects to tidy format.
+
+```{r tidy.coxme, message=FALSE}
+library(broom)
+library(coxme)
+fit <- coxme(Surv(y, uncens) ~ trt + (1|center), eortc)
+knitr::kable(tidy(fit, exp = T), digits = 3)
+```
+
+
+```{r glance.tidy}
+fit_g <- glance(fit)
+knitr::kable(as.data.frame(t(fit_g)), digits = 3)
+```
+
