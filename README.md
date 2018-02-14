@@ -32,7 +32,7 @@ ggplot(ggsurv(surv_object), aes(time, surv, color=strata)) + geom_step()
 
 #### gg\_zph
 
-ggplot2 impementation for visualizing scaled Schoenfield residuals form a cox.zph object.
+ggplot2 implementation for visualizing scaled Schoenfield residuals form a cox.zph object.
 
 ``` r
 bladder1 <- bladder[bladder$enum < 5, ] 
@@ -42,11 +42,15 @@ x <- cox.zph(fit, transform = "identity")
 gg_zph(x)
 ```
 
+    ## `geom_smooth()` using method = 'loess'
+
 ![](README_files/figure-markdown_github/gg_zph-1.png)
 
 ``` r
 gg_zph(x, log = TRUE)
 ```
+
+    ## `geom_smooth()` using method = 'loess'
 
 ![](README_files/figure-markdown_github/gg_zph-2.png)
 
@@ -83,3 +87,21 @@ knitr::kable(as.data.frame(t(fit_g)), digits = 3)
 | random\_n\_center        |      37.000|
 | random\_sd\_center       |       0.329|
 | random\_variance\_center |       0.108|
+
+#### coxme predict
+
+Get predicted vales based on a mixed-effects Cox model, fitted using the coxme package. Extends the standard predict.coxme function by allowing for new data, and by calculating relative risks, either overall or within stratum.
+
+``` r
+new_data <- data.frame(trt = unique(eortc$trt))
+
+predict_coxme(fit, newdata = new_data, type = "risk")
+```
+
+    ## $fit
+    ##         1         2 
+    ## 1.2260138 0.6035994 
+    ## 
+    ## $se.fit
+    ##          1          2 
+    ## 0.02045537 0.03555950
