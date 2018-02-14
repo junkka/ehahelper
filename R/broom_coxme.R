@@ -116,3 +116,36 @@ glance.coxme <- function(x, ...){
   ret <- as.data.frame(ret)
   broom:::finish_glance(ret, x)
 }
+
+
+#' Augment coxme
+#' 
+#' Augment coxme object
+#' 
+#' @param x coxme object
+#' @param data original data for augment
+#' @param newdata new data on which to do predictions
+#' @param type.predict type of prediction value linear predictor or risk
+#' @param ... Extra arguments, not used
+#' @export
+#' @examples
+#' library(broom)
+#' library(coxme)
+#' fit <- coxme(Surv(y, uncens) ~ trt + (1|center), eortc)
+#' augment(fit, type.predict = "risk")
+#' 
+
+augment.coxme <- function(x, data = stats::model.frame(x), newdata = NULL,
+                          type.predict = "lp", 
+                          ...) {
+  pred <- predict_coxme(x, newdata = newdata, type = type.predict)
+  data$.fitted <- pred$fit
+  data$.se.fit <- pred$se.fit
+  data
+}
+
+
+
+
+
+

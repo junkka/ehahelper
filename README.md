@@ -88,6 +88,25 @@ knitr::kable(as.data.frame(t(fit_g)), digits = 3)
 | random\_sd\_center       |       0.329|
 | random\_variance\_center |       0.108|
 
+#### coxme augment
+
+Using a coxme model, add fitted values and standard errors to original dataset.
+
+``` r
+eortc_augmented <- augment(fit, eortc)
+
+knitr::kable(head(eortc_augmented))
+```
+
+|     |          y|  uncens|  center|  trt|     .fitted|    .se.fit|
+|-----|----------:|-------:|-------:|----:|-----------:|----------:|
+| 2   |   506.1603|       1|       1|    1|   0.2037681|  0.0184739|
+| 3   |   294.3800|       1|       1|    1|   0.2037681|  0.0184739|
+| 4   |   383.9152|       1|       1|    0|  -0.5048446|  0.0457700|
+| 5   |  2441.8338|       0|       1|    0|  -0.5048446|  0.0457700|
+| 6   |  2442.2923|       0|       1|    0|  -0.5048446|  0.0457700|
+| 7   |   312.3571|       1|       1|    1|   0.2037681|  0.0184739|
+
 #### coxme predict
 
 Get predicted vales based on a mixed-effects Cox model, fitted using the coxme package. Extends the standard predict.coxme function by allowing for new data, and by calculating relative risks, either overall or within stratum.

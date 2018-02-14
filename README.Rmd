@@ -62,6 +62,16 @@ fit_g <- glance(fit)
 knitr::kable(as.data.frame(t(fit_g)), digits = 3)
 ```
 
+#### coxme augment
+
+Using a coxme model, add fitted values and standard errors to original dataset.
+
+```{r}
+eortc_augmented <- augment(fit, eortc)
+
+knitr::kable(head(eortc_augmented))
+```
+
 
 #### coxme predict
 
