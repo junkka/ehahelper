@@ -28,4 +28,3 @@ ggplot(ggsurv(surv_object), aes(time, surv, color=strata)) + geom_step()
 \author{
 Johan Junkka
 }
-

@@ -14,4 +14,3 @@
 \description{
 Glance method for coxreg objects
 }
-

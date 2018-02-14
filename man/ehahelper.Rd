@@ -11,4 +11,3 @@ ehahelper
 \author{
 Johan Junkka \email{johan.junkka@gmail.com}
 }
-

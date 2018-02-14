@@ -24,4 +24,3 @@ data(oldmort)
 fit <- coxreg(Surv(enter, exit, event) ~ civ + sex + birthdate, data = oldmort)
 tidy(fit)
 }
-

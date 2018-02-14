@@ -26,4 +26,3 @@ fit <- coxme(Surv(y, uncens) ~ trt + (1|center), eortc)
 tidy(fit)
 
 }
-

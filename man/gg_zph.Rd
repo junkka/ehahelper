@@ -27,4 +27,3 @@ gg_zph(fit_zph)
 gg_zph(fit_zph, log = TRUE)
 
 }
-

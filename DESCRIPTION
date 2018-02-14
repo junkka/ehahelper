@@ -1,7 +1,7 @@
 Package: ehahelper
 Title: Helper Functions for Event History Analysis
 Version: 0.2.9999
-Date: 2016-04-13
+Date: 2018-02-14
 Author: Johan Junkka
 Maintainer: Johan Junkka <johan.junkka@gmail.com>
 Description: 
@@ -18,4 +18,4 @@ Imports:
 License: MIT + file LICENSE
 LazyData: true
 Roxygen: list(wrap = FALSE)
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

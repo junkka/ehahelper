@@ -21,4 +21,3 @@ fit_zph <- cox.zph(fit, transform = "identity")
 zph_df <- as.data.frame(fit_zph)
 
 }
-
