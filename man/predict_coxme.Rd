@@ -5,16 +5,18 @@
 \title{Predict coxme}
 \usage{
 predict_coxme(object, newdata = NULL, type = c("lp", "risk"),
-  strata_ref = TRUE)
+  se.fit = FALSE, strata_ref = TRUE)
 }
 \arguments{
-\item{object}{coxme object}
+\item{object}{coxme object.}
 
-\item{newdata}{data.frame new data set}
+\item{newdata}{data.frame new data set.}
 
-\item{type}{type of prediction, linear predictor ("lp") or relative risk ("risk")}
+\item{type}{type of prediction, linear predictor ("lp") or relative risk ("risk").}
 
-\item{strata_ref}{logical, use strata as reference}
+\item{se.fit}{if TRUE, pointwise standard errors are produced for the predictions.}
+
+\item{strata_ref}{logical, use strata as reference.}
 }
 \description{
 Prediction method for coxme objects

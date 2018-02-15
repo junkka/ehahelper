@@ -135,10 +135,10 @@ glance.coxme <- function(x, ...){
 #' augment(fit, type.predict = "risk")
 #' 
 
-augment.coxme <- function(x, data = stats::model.frame(x), newdata = NULL,
+augment.coxme <- function(x, data = survival:::model.frame.coxph(x), newdata = NULL,
                           type.predict = "lp", 
                           ...) {
-  pred <- predict_coxme(x, newdata = newdata, type = type.predict)
+  pred <- predict_coxme(x, newdata = newdata, type = type.predict, se.fit = TRUE)
   data$.fitted <- pred$fit
   data$.se.fit <- pred$se.fit
   data

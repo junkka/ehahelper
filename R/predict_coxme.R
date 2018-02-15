@@ -2,10 +2,11 @@
 #' 
 #' Prediction method for coxme objects
 #' 
-#' @param object coxme object
-#' @param newdata data.frame new data set
-#' @param type type of prediction, linear predictor ("lp") or relative risk ("risk")
-#' @param strata_ref logical, use strata as reference
+#' @param object coxme object.
+#' @param newdata data.frame new data set.
+#' @param type type of prediction, linear predictor ("lp") or relative risk ("risk").
+#' @param se.fit if TRUE, pointwise standard errors are produced for the predictions.
+#' @param strata_ref logical, use strata as reference.
 #' @export
 #' @import coxme
 #' @examples 
@@ -17,7 +18,11 @@
 predict_coxme <- function(object, 
                           newdata = NULL, 
                           type = c("lp", "risk"), 
+                          se.fit = FALSE,
                           strata_ref = TRUE){
+  
+  if (!inherits(object, 'coxme'))
+    stop("Primary argument much be a coxme object")
   
   type <- match.arg(type)
   n <- object$n[2]
@@ -27,6 +32,7 @@ predict_coxme <- function(object,
     has_strata <- ifelse(length(attr(Terms, "specials")$strata) == 0, FALSE, has_strata)
   has_newdata  <- !is.null(newdata)
   
+  if (!se.fit & type == "lp" & !has_newdata) return(object$linear.predictor)
   
   coef <- fixed.effects(object)
   mf <- survival:::model.frame.coxph(object)
@@ -39,7 +45,7 @@ predict_coxme <- function(object,
   # if strata update terms
   if (has_strata){
     strata_terms <- untangle.specials(Terms, "strata")
-    Terms2 <- Terms[-stemp$terms]
+    Terms2 <- Terms[-strata_terms$terms]
   } else {
     Terms2 <- Terms
   }
@@ -55,24 +61,26 @@ predict_coxme <- function(object,
     # Full model matrix
     x <- model.matrix(Terms, data = mf)
     
-    oldstrat <- mf[[stemp$vars]]
+    oldstrat <- mf[[strata_terms$vars]]
     xmeans <- rowsum(x, oldstrat)/as.vector(table(oldstrat))
   }
   
   if (!has_newdata){
-    # cols <- rownames(attr(Terms, "factor"))[-stemp$terms]
     # extract all cols in x which matches Terms
     mm <- model.matrix(Terms2, data =mf)[ ,-1]
     m <- mf
   }
   
   if (has_strata & strata_ref){
-    newstrat <- m[[stemp$vars]]
+    newstrat <- m[[strata_terms$vars]]
     mm <- mm - xmeans[match(newstrat, row.names(xmeans)), colnames(mm)]
   } else {
     mm <- mm - rep(object$means, each = nrow(m))
   }
-  
+  # 
+  # if (!has_newdata & !has_strata){
+  #   pred <- object$linear.predictor
+  # }
   if (length(coef) == 1){
     pred <- mm * coef
   } else {
@@ -80,11 +88,11 @@ predict_coxme <- function(object,
   }
   
   
-  se <- sqrt(rowSums((mm %*% vcov(object)) * mm))
+  if (se.fit) se <- sqrt(rowSums((mm %*% vcov(object)) * mm))
   if (type == "risk"){
     pred <- exp(pred)
-    se <- se * sqrt(pred)
+    if (se.fit) se <- se * sqrt(pred)
   }
-  
-  list(fit = pred, se.fit = se)
+  if (se.fit) list(fit = pred, se.fit = se)
+  else pred
 }

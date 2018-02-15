@@ -1,11 +1,11 @@
 Package: ehahelper
 Title: Helper Functions for Event History Analysis
 Version: 0.2.9999
-Date: 2018-02-14
+Date: 2018-02-15
 Author: Johan Junkka
 Maintainer: Johan Junkka <johan.junkka@gmail.com>
 Description: 
-    Helper Functions for Event History Analysis.
+    Helper Functions for Event History Analysis, including tidying functions for coxme.
 URL: https://github.com/junkka/ehahelper
 Depends:
     R (>= 3.2.0)

@@ -117,10 +117,5 @@ new_data <- data.frame(trt = unique(eortc$trt))
 predict_coxme(fit, newdata = new_data, type = "risk")
 ```
 
-    ## $fit
     ##         1         2 
-    ## 1.2260138 0.6035994 
-    ## 
-    ## $se.fit
-    ##          1          2 
-    ## 0.02045537 0.03555950
+    ## 1.2260138 0.6035994

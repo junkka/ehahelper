@@ -4,8 +4,8 @@
 \alias{augment.coxme}
 \title{Augment coxme}
 \usage{
-\method{augment}{coxme}(x, data = stats::model.frame(x), newdata = NULL,
-  type.predict = "lp", ...)
+\method{augment}{coxme}(x, data = survival:::model.frame.coxph(x),
+  newdata = NULL, type.predict = "lp", ...)
 }
 \arguments{
 \item{x}{coxme object}
