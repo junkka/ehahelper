@@ -29,7 +29,7 @@ predict_coxme <- function(object,
   
   
   coef <- fixed.effects(object)
-  mf <- stats::model.frame(object)
+  mf <- survival:::model.frame.coxph(object)
   if (has_newdata){
     m <- model.frame(Terms, newdata)
   } else {
