@@ -48,6 +48,7 @@ tidy.coxme <- function(x, exponentiate = FALSE, conf.int = 0.95, ...){
 #'
 #' @param x coxme object
 #' @param ... other params
+#' @importFrom tibble as_tibble
 #' @export
 #' @examples
 #' library(broom)
@@ -113,8 +114,8 @@ glance.coxme <- function(x, ...){
   names(grps) <- paste0("random_n_", names(grps))
   
   ret <- as.list(c(temp0, grps, b))
-  ret <- as.data.frame(ret)
-  broom:::finish_glance(ret, x)
+  tibble::as_tibble(ret)
+  
 }
 
 
