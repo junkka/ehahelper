@@ -25,8 +25,8 @@ tidy.coxreg <- function(x, exponentiate = TRUE, ...){
     "term" = names(beta), 
     "estimate" = beta, 
     "std.error" = se, 
-    "statistic" = round(beta/se, 2), 
-    "p.value" = round(signif(1 - pchisq((beta/se)^2, 1), 2), 3),
+    "statistic" = beta/se, 2, 
+    "p.value" = signif(1 - pchisq((beta/se)^2, 1), 2),
     "conf.low" =  beta - z * se,
     "conf.high" =  beta + z * se
   )
