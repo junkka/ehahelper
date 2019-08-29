@@ -66,7 +66,7 @@ glance.coxme <- function(x, ...){
     x$n[2], x$n[1],
     chi1, x$df[1],
     as.numeric(loglik[3]),
-    signif(1 - pchisq(chi1, x$df[1]), 5),
+    1 - pchisq(chi1, x$df[1]),
     chi1 - 2 * x$df[1],
     chi1 - log(x$n[1]) * x$df[1]))
   names(temp0) <- c("n", "events" , "Chisq", "df", "logLik", "p", "AIC", "BIC")
