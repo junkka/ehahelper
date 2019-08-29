@@ -22,13 +22,13 @@ tidy.coxreg <- function(x, exponentiate = TRUE, ...){
   se <- sqrt(diag(x$var)[1:nvar])
   z <- qnorm((1 + 0.95)/2, 0, 1)
   ret <- data.frame(
-    "term" = names(beta), 
-    "estimate" = beta, 
+    "term"      = names(beta), 
+    "estimate"  = beta, 
     "std.error" = se, 
     "statistic" = beta/se, 2, 
-    "p.value" = signif(1 - pchisq((beta/se)^2, 1), 2),
-    "conf.low" =  beta - z * se,
-    "conf.high" =  beta + z * se
+    "p.value"   = 1 - pchisq((beta/se)^2, 1),
+    "conf.low"  = beta - z * se,
+    "conf.high" = beta + z * se
   )
   if (exponentiate) {
     ret$estimate <- exp(ret$estimate)

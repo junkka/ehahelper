@@ -25,12 +25,12 @@ tidy.coxme <- function(x, exponentiate = FALSE, conf.int = 0.95, ...){
   se <- sqrt(diag(as.matrix(x$var))[nfrail + 1:nvar])
   z <- qnorm((1 + conf.int)/2, 0, 1)
   ret <- data.frame(
-    "term" = names(beta),
-    "estimate" = beta,
+    "term"      = names(beta),
+    "estimate"  = beta,
     "std.error" = se,
     "statistic" = beta/se,
-    "p.value" = signif(1 - pchisq((beta/se)^2, 1), 2),
-    "conf.low" =  beta - z * se,
+    "p.value"   = 1 - pchisq((beta/se)^2, 1),
+    "conf.low"  =  beta - z * se,
     "conf.high" =  beta + z * se
   )
   if (exponentiate) {
