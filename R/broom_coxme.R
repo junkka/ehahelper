@@ -13,6 +13,7 @@
 #' @examples 
 #' library(broom)
 #' library(coxme)
+#' data(eortc)
 #' fit <- coxme(Surv(y, uncens) ~ trt + (1|center), eortc)
 #' tidy(fit)
 #' 

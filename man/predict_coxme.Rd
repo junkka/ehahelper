@@ -23,6 +23,7 @@ Prediction method for coxme objects
 }
 \examples{
 library(coxme)
+data(eortc)
 fit <- coxme(Surv(y, uncens) ~ trt + (1|center), eortc)
 predict_coxme(fit)
 

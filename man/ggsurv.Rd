@@ -4,10 +4,12 @@
 \alias{ggsurv}
 \title{Survfit for ggplot2}
 \usage{
-ggsurv(x)
+ggsurv(x, lims = NULL)
 }
 \arguments{
 \item{x}{a coxph or survfit object}
+
+\item{lims}{not implemented}
 }
 \value{
 data.frame with time, strata, std_err, upper, lower, n_risk, n_event, n_centor, 

@@ -11,6 +11,7 @@
 #' @import coxme
 #' @examples 
 #' library(coxme)
+#' data(eortc)
 #' fit <- coxme(Surv(y, uncens) ~ trt + (1|center), eortc)
 #' predict_coxme(fit)
 #' 
@@ -36,6 +37,11 @@ predict_coxme <- function(object,
   
   coef <- fixed.effects(object)
   mf <- survival:::model.frame.coxph(object)
+  
+  # boot.ci
+  
+  
+  
   if (has_newdata){
     m <- model.frame(Terms, newdata)
   } else {
@@ -77,7 +83,7 @@ predict_coxme <- function(object,
   } else {
     mm <- mm - rep(object$means, each = nrow(m))
   }
-  # 
+  
   # if (!has_newdata & !has_strata){
   #   pred <- object$linear.predictor
   # }
@@ -88,7 +94,7 @@ predict_coxme <- function(object,
   }
   
   
-  if (se.fit) se <- sqrt(rowSums((mm %*% vcov(object)) * mm))
+  if (se.fit) se <- sqrt(diag(mm %*% vcov(object) %*% t(mm)))
   if (type == "risk"){
     pred <- exp(pred)
     if (se.fit) se <- se * sqrt(pred)
