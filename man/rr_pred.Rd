@@ -4,26 +4,13 @@
 \alias{rr_pred}
 \title{Predict relative risk}
 \usage{
-rr_pred(model, newdata, center, conf.level = 0.95)
+rr_pred(x, ...)
 }
 \arguments{
-\item{model}{coxph object}
+\item{x}{coxph object}
 
-\item{newdata}{data.frame}
-
-\item{center}{center variable}
-
-\item{conf.level}{The confidence level to use for the confidence interval.}
+\item{...}{others}
 }
 \description{
-predict centered relative risk from coxph object
-}
-\examples{
-
-library(survival)
-fit <- coxph(Surv(time, status) ~ age + ph.ecog + strata(inst), lung)
-newdata <- expand.grid(age = 50, ph.ecog = 0:3, inst = 11)
-
-rr_pred(fit, newdata, center = c(ph.ecog = 0))
-
+predict centered relative risk from coxph and coxme objects
 }
