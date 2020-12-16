@@ -4,10 +4,10 @@
 \alias{rr_pred}
 \title{Predict relative risk}
 \usage{
-rr_pred(x, ...)
+rr_pred(model, ...)
 }
 \arguments{
-\item{x}{coxph object}
+\item{model}{coxph or coxme object}
 
 \item{...}{others}
 }

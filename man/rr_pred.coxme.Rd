@@ -4,17 +4,17 @@
 \alias{rr_pred.coxme}
 \title{Predict relative risk}
 \usage{
-\method{rr_pred}{coxme}(object, newdata = NULL, center,
-  conf.level = 0.95, strata_ref = TRUE)
+\method{rr_pred}{coxme}(model, newdata = NULL, center,
+  conf.level = 0.95)
 }
 \arguments{
+\item{model}{coxme object}
+
 \item{newdata}{data.frame}
 
 \item{center}{center variable}
 
 \item{conf.level}{The confidence level to use for the confidence interval.}
-
-\item{model}{coxme object}
 }
 \description{
 predict centered relative risk from  coxme object

@@ -4,7 +4,7 @@
 \alias{rr_pred.coxph}
 \title{Predict relative risk}
 \usage{
-\method{rr_pred}{coxph}(model, newdata, center, conf.level = 0.95, ...)
+\method{rr_pred}{coxph}(model, newdata, center, conf.level = 0.95)
 }
 \arguments{
 \item{model}{coxph object}

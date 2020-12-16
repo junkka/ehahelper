@@ -68,8 +68,8 @@ glance.coxme <- function(x, ...){
     chi1, x$df[1],
     as.numeric(loglik[3]),
     1 - pchisq(chi1, x$df[1]),
-    chi1 - 2 * x$df[1],
-    chi1 - log(x$n[1]) * x$df[1]))
+    AIC(x),
+    BIC(x)))
   names(temp0) <- c("n", "events" , "Chisq", "df", "logLik", "p", "AIC", "BIC")
   
   ## random effects
