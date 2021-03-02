@@ -51,7 +51,7 @@ rr_pred.coxph <- function(model, newdata, center, conf.level = .95){
   # calculate predicted
   lp <- mm_c %*% coef 
   # approximate standard error
-  se <- sqrt(diag(mm_c %*% vcov(model) %*% t(mm_c)))
+  se <- sqrt(rowSums((mm_c %*% vcov(model)) * mm_c))
   
   alpha <- 1-conf.level
   crit <- -qnorm(alpha/2)
@@ -135,7 +135,7 @@ rr_pred.coxme <- function(model,
   }
   
   # Approximate standard error
-  se <- sqrt(diag(mm_c %*% vcov(model) %*% t(mm_c)))
+  se <- sqrt(rowSums((mm_c %*% vcov(model)) * mm_c))
 
   alpha <- 1-conf.level
   crit <- -qnorm(alpha/2)

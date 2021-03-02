@@ -3,11 +3,7 @@
 \docType{package}
 \name{ehahelper}
 \alias{ehahelper}
-\alias{ehahelper-package}
 \title{ehahelper}
-\description{
-ehahelper
-}
 \author{
 Johan Junkka \email{johan.junkka@gmail.com}
 }

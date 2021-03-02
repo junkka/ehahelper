@@ -94,7 +94,7 @@ predict_coxme <- function(object,
   }
   
   
-  if (se.fit) se <- sqrt(diag(mm %*% vcov(object) %*% t(mm)))
+  if (se.fit) se <- sqrt(rowSums((mm %*% vcov(object)) * mm))
   if (type == "risk"){
     pred <- exp(pred)
     if (se.fit) se <- se * sqrt(pred)

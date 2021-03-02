@@ -4,8 +4,7 @@
 \alias{rr_pred.coxme}
 \title{Predict relative risk}
 \usage{
-\method{rr_pred}{coxme}(model, newdata = NULL, center,
-  conf.level = 0.95)
+\method{rr_pred}{coxme}(model, newdata = NULL, center, conf.level = 0.95)
 }
 \arguments{
 \item{model}{coxme object}

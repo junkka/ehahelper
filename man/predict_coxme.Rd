@@ -4,8 +4,13 @@
 \alias{predict_coxme}
 \title{Predict coxme}
 \usage{
-predict_coxme(object, newdata = NULL, type = c("lp", "risk"),
-  se.fit = FALSE, strata_ref = TRUE)
+predict_coxme(
+  object,
+  newdata = NULL,
+  type = c("lp", "risk"),
+  se.fit = FALSE,
+  strata_ref = TRUE
+)
 }
 \arguments{
 \item{object}{coxme object.}
